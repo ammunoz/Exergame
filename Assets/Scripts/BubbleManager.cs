@@ -26,6 +26,8 @@ public class BubbleManager : MonoBehaviour {
       SpawnBubble("Slide");
     } else if(Input.GetKeyDown(KeyCode.Alpha3)) {
       SpawnBubble("Swish");
+    } else if(Input.GetKeyDown(KeyCode.Alpha4)) {
+      SpawnBubble("Pop");
     }
   }
 

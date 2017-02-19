@@ -23,7 +23,7 @@ public class SwishScript : MonoBehaviour{
   private void Move() {
     angle += rotateSpeed * Time.deltaTime;
 
-    Vector3 offset = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle) * radius, transform.position.z);
+    Vector3 offset = new Vector3(Mathf.Sin(angle) * radius, Mathf.Cos(angle) * radius, transform.position.z);
     transform.position = center + offset;
   }
 

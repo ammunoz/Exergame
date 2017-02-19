@@ -1,14 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BubbleScript : MonoBehaviour {
+public class SwishScript : MonoBehaviour{
 
   public bool debug = false;
   private bool collided = false;
-  private int value = 1;
 
+  private int value = 2;
+  private int radius = 0;
+  private float rotateSpeed = 5f;
+  private float angle = 0;
+  private Vector3 center;
+
+  // Use this for initialization
   private void Awake() {
+    if (radius == 0)
+      radius = UnityEngine.Random.Range(1, 5);
+
     InitBubble();
+  }
+
+  private void Move() {
+    angle += rotateSpeed * Time.deltaTime;
+
+    Vector3 offset = new Vector3(Mathf.Sin(angle), Mathf.Cos(angle) * radius, transform.position.z);
+    transform.position = center + offset;
   }
 
   private void Update() {
@@ -16,7 +32,7 @@ public class BubbleScript : MonoBehaviour {
   }
 
   private void OnTriggerEnter(Collider c) {
-    if (debug) 
+    if (debug)
       Debug.Log(gameObject.name + ": collided with " + c.name);
 
     if (c.tag == "Hand") {
@@ -29,15 +45,13 @@ public class BubbleScript : MonoBehaviour {
   }
 
   private void OnTriggerExit(Collider c) {
-    if(c.tag == "Hand")
+    if (c.tag == "Hand")
       collided = false;
   }
 
-  private void Move() {}
-
   private void GetRandomLocationOnScreen(out int x, out int y) {
-    x = UnityEngine.Random.Range(-10, 10);
-    y = UnityEngine.Random.Range(-3, 6);
+    x = UnityEngine.Random.Range(-10+radius, 10-radius);
+    y = UnityEngine.Random.Range(-3+radius, 6-radius);
     if (debug) Debug.Log("Bubble spawned at x: " + x + ", y: " + y);
   }
 
@@ -45,5 +59,6 @@ public class BubbleScript : MonoBehaviour {
     int x, y;
     GetRandomLocationOnScreen(out x, out y);
     transform.position = new Vector3(x, y, transform.position.z);
+    center = transform.position;
   }
 }

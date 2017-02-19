@@ -5,8 +5,9 @@ public class GameManager: MonoBehaviour {
 
   public static GameManager instance = null;
   private ScoreManager scoreManager = null;
+  private BubbleManager bubbleManager = null;
 
-	void Awake () {
+	private void Awake () {
     if (instance == null)
       instance = this;
     else if (instance != this)
@@ -15,6 +16,10 @@ public class GameManager: MonoBehaviour {
 
     if(scoreManager == null) {
       scoreManager = gameObject.GetComponent<ScoreManager>();
+    }
+
+    if(bubbleManager == null) {
+      bubbleManager = gameObject.GetComponent<BubbleManager>();
     }
 	}
 

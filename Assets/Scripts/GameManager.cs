@@ -7,6 +7,12 @@ public class GameManager: MonoBehaviour {
   private ScoreManager scoreManager = null;
   private BubbleManager bubbleManager = null;
 
+  // Screen values
+  public const int xMin = -10;
+  public const int xMax = 10;
+  public const int yMin = -3;
+  public const int yMax = 6;
+
 	private void Awake () {
     if (instance == null)
       instance = this;

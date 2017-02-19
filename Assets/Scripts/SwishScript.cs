@@ -50,8 +50,8 @@ public class SwishScript : MonoBehaviour{
   }
 
   private void GetRandomLocationOnScreen(out int x, out int y) {
-    x = UnityEngine.Random.Range(-10+radius, 10-radius);
-    y = UnityEngine.Random.Range(-3+radius, 6-radius);
+    x = UnityEngine.Random.Range(GameManager.xMin + radius, GameManager.xMax - radius);
+    y = UnityEngine.Random.Range(GameManager.yMin + radius, GameManager.yMax - radius);
     if (debug) Debug.Log("Bubble spawned at x: " + x + ", y: " + y);
   }
 

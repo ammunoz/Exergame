@@ -23,12 +23,14 @@ public class BubbleManager : MonoBehaviour {
     if(Input.GetKeyDown(KeyCode.Alpha1)) {
       SpawnBubble("Bubble");
     } else if(Input.GetKeyDown(KeyCode.Alpha2)) {
+      SpawnBubble("Slide");
+    } else if(Input.GetKeyDown(KeyCode.Alpha3)) {
       SpawnBubble("Swish");
     }
   }
 
   private void SpawnBubble(string bubbleType) {
     if (debug) Debug.Log("Bubble spawned");
-    GameObject bubble = GameObject.Instantiate(Resources.Load("Prefabs/" + bubbleType)) as GameObject;
+    GameObject.Instantiate(Resources.Load("Prefabs/" + bubbleType));
   }
 }

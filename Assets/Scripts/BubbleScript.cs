@@ -36,8 +36,8 @@ public class BubbleScript : MonoBehaviour {
   private void Move() {}
 
   private void GetRandomLocationOnScreen(out int x, out int y) {
-    x = UnityEngine.Random.Range(-10, 10);
-    y = UnityEngine.Random.Range(-3, 6);
+    x = UnityEngine.Random.Range(GameManager.xMin, GameManager.xMax);
+    y = UnityEngine.Random.Range(GameManager.yMin, GameManager.yMax);
     if (debug) Debug.Log("Bubble spawned at x: " + x + ", y: " + y);
   }
 

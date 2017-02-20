@@ -4,12 +4,15 @@ using System.Collections;
 public class PopScript : MonoBehaviour {
 
   public bool debug = false;
+
   private bool collided = false;
   private int value = 1;
   private int countdownRate = 3;
   private int countdownBonus = 2;
   private int stage = 0;
   private int maxStage = 3;
+
+  public Material[] materials = new Material[3];
 
   private void Awake() {
     InitBubble();
@@ -53,13 +56,14 @@ public class PopScript : MonoBehaviour {
   }
 
   private void CountDown() {
-    if (debug) Debug.Log("Pop bubble: counting down");
+    if (debug) Debug.Log("Pop bubble: counting down, at stage: " + stage);
     if (stage >= maxStage) {
       if (debug) Debug.Log("Pop bubble: popped at stage " + stage);
       Destroy(gameObject);
+      return;
     }
       
-    if (stage++ != 0) {
+    if (stage++ > 0) {
       value += countdownBonus;
       Vector3 currentScale = gameObject.transform.localScale;
       gameObject.transform.localScale = new Vector3(
@@ -72,10 +76,6 @@ public class PopScript : MonoBehaviour {
   }
 
   private void UpdateColor() {
-    /**
-     * UpdateColor code here
-     */
-    // Color color;
-    // if (debug) Debug.Log("Pop: color changed to " + color.ToString());
+    gameObject.GetComponent<Renderer>().material = materials[stage-1];
   }
 }

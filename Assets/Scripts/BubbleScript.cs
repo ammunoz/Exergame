@@ -5,7 +5,7 @@ public class BubbleScript : MonoBehaviour {
 
   public bool debug = false;
   private bool collided = false;
-  private int value = 1;
+  private int value = 0;
 
   private void Awake() {
     InitBubble();
@@ -42,6 +42,10 @@ public class BubbleScript : MonoBehaviour {
   }
 
   private void InitBubble() {
+    // Set values
+    value = GameManager.instance.BubbleValue;
+
+    // Set random location
     int x, y;
     GetRandomLocationOnScreen(out x, out y);
     transform.position = new Vector3(x, y, transform.position.z);

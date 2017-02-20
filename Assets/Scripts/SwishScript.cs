@@ -6,17 +6,14 @@ public class SwishScript : MonoBehaviour{
   public bool debug = false;
   private bool collided = false;
 
-  private int value = 2;
+  private int value = 0;
   private int radius = 0;
-  private float rotateSpeed = 5f;
+  private float rotateSpeed = 0;
   private float angle = 0;
   private Vector3 center;
 
   // Use this for initialization
   private void Awake() {
-    if (radius == 0)
-      radius = UnityEngine.Random.Range(1, 5);
-
     InitBubble();
   }
 
@@ -56,6 +53,12 @@ public class SwishScript : MonoBehaviour{
   }
 
   private void InitBubble() {
+    // Set values
+    value = GameManager.instance.SwishValue;
+    radius = UnityEngine.Random.Range(GameManager.instance.SwishRadiusMin, GameManager.instance.SwishRadiusMax);
+    rotateSpeed = GameManager.instance.SwishRotateSpeed;
+
+    // Set random location
     int x, y;
     GetRandomLocationOnScreen(out x, out y);
     transform.position = new Vector3(x, y, transform.position.z);

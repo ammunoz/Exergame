@@ -5,7 +5,7 @@ public class SlideScript : MonoBehaviour {
 
   public bool debug = false;
   private bool collided = false;
-  private int value = 2;
+  private int value = 0;
   private float moveSpeed = 0f;
   private float verticalDirection = 0f;
   private float horizontalDirection = 0f;
@@ -62,11 +62,16 @@ public class SlideScript : MonoBehaviour {
   }
 
   private void InitBubble() {
+    // Set values
+    value = GameManager.instance.SlideValue;
+    moveSpeed = UnityEngine.Random.Range(GameManager.instance.SlideMoveSpeedMin, GameManager.instance.SlideMoveSpeedMax);
+
+    // Set random location
     int x, y;
     GetRandomLocationOnScreen(out x, out y);
     transform.position = new Vector3(x, y, transform.position.z);
 
-    moveSpeed = UnityEngine.Random.Range(0.05f, 0.2f);
+    // Set random direction
     verticalDirection = UnityEngine.Random.Range(-1.0f, 1.0f);
     horizontalDirection = UnityEngine.Random.Range(-1.0f, 1.0f);
   }

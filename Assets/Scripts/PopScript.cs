@@ -6,13 +6,13 @@ public class PopScript : MonoBehaviour {
   public bool debug = false;
 
   private bool collided = false;
-  private int value = 1;
-  private int countdownRate = 3;
-  private int countdownBonus = 2;
+  private int value = 0;
+  private int countdownRate = 0;
+  private int countdownBonus = 0;
   private int stage = 0;
-  private int maxStage = 3;
+  private const int maxStage = 3;
 
-  public Material[] materials = new Material[3];
+  public Material[] materials = new Material[maxStage];
 
   private void Awake() {
     InitBubble();
@@ -49,6 +49,12 @@ public class PopScript : MonoBehaviour {
   }
 
   private void InitBubble() {
+    // Set values
+    value = GameManager.instance.PopValue;
+    countdownRate = GameManager.instance.PopCountDownRate;
+    countdownBonus = GameManager.instance.PopCountDownBonus;
+
+    // Set random location
     int x, y;
     GetRandomLocationOnScreen(out x, out y);
     transform.position = new Vector3(x, y, transform.position.z);

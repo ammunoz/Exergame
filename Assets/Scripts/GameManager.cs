@@ -8,10 +8,10 @@ public class GameManager: MonoBehaviour {
   private BubbleManager bubbleManager = null;
 
   // Screen values
-  public const int xMin = -10;
-  public const int xMax = 10;
-  public const int yMin = -3;
-  public const int yMax = 6;
+  public const float xMin = -8;
+  public const float xMax = 8;
+  public const float yMin = -3.5f;
+  public const float yMax = 5.5f;
 
   // Pop values
   private int popValue = 1;

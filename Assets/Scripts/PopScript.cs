@@ -42,7 +42,7 @@ public class PopScript : MonoBehaviour {
 
   private void Move() { }
 
-  private void GetRandomLocationOnScreen(out int x, out int y) {
+  private void GetRandomLocationOnScreen(out float x, out float y) {
     x = UnityEngine.Random.Range(GameManager.xMin + maxStage, GameManager.xMax - maxStage);
     y = UnityEngine.Random.Range(GameManager.yMin + maxStage, GameManager.yMax - maxStage);
     if (debug) Debug.Log("Bubble spawned at x: " + x + ", y: " + y);
@@ -55,7 +55,7 @@ public class PopScript : MonoBehaviour {
     countdownBonus = GameManager.instance.PopCountDownBonus;
 
     // Set random location
-    int x, y;
+    float x, y;
     GetRandomLocationOnScreen(out x, out y);
     transform.position = new Vector3(x, y, transform.position.z);
     InvokeRepeating("CountDown", 0, countdownRate);

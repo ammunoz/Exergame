@@ -46,7 +46,7 @@ public class SwishScript : MonoBehaviour{
       collided = false;
   }
 
-  private void GetRandomLocationOnScreen(out int x, out int y) {
+  private void GetRandomLocationOnScreen(out float x, out float y) {
     x = UnityEngine.Random.Range(GameManager.xMin + radius, GameManager.xMax - radius);
     y = UnityEngine.Random.Range(GameManager.yMin + radius, GameManager.yMax - radius);
     if (debug) Debug.Log("Bubble spawned at x: " + x + ", y: " + y);
@@ -59,7 +59,7 @@ public class SwishScript : MonoBehaviour{
     rotateSpeed = GameManager.instance.SwishRotateSpeed;
 
     // Set random location
-    int x, y;
+    float x, y;
     GetRandomLocationOnScreen(out x, out y);
     transform.position = new Vector3(x, y, transform.position.z);
     center = transform.position;

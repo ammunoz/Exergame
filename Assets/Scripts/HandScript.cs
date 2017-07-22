@@ -6,8 +6,8 @@ using System.Collections;
 public class HandScript : MonoBehaviour {
 
   public bool debug;
-  private Vector3 screenPoint;
   private Vector3 offset;
+  private Vector3 screenPoint;
 
   void OnMouseDown() {
     if (debug) Debug.Log(this.gameObject.name + ": CLICK");

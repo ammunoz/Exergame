@@ -33,11 +33,12 @@ public class GameManager: MonoBehaviour {
   private float slideMoveSpeedMax = 0.20f;
 
   private void Awake () {
-    if (instance == null)
+    if (instance == null) {
       instance = this;
-    else if (instance != this)
+    }
+    else if (instance != this) {
       Destroy(gameObject);
-    DontDestroyOnLoad(gameObject);
+    }
 
     if(scoreManager == null) {
       scoreManager = gameObject.GetComponent<ScoreManager>();
@@ -46,7 +47,9 @@ public class GameManager: MonoBehaviour {
     if(bubbleManager == null) {
       bubbleManager = gameObject.GetComponent<BubbleManager>();
     }
-	}
+
+    DontDestroyOnLoad(gameObject);
+  }
 
   public void IncreaseScore(int s) {
     scoreManager.IncreaseScore(s);

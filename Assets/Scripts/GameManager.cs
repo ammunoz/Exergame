@@ -6,6 +6,7 @@ public class GameManager: MonoBehaviour {
   public static GameManager instance = null;
   private ScoreManager scoreManager = null;
   private BubbleManager bubbleManager = null;
+  private GameMenu gameMenu = null;
 
   // Screen values
   public const float xMin = -8;
@@ -25,12 +26,18 @@ public class GameManager: MonoBehaviour {
   private int swishValue = 2;
   private int swishRadiusMin = 1;
   private int swishRadiusMax = 5;
-  private float swishRotateSpeed = 5f;
+  private float swishRotateSpeed = 1f;
 
   // Slide values
   private int slideValue = 2;
   private float slideMoveSpeedMin = 0.05f;
   private float slideMoveSpeedMax = 0.20f;
+
+  // Time Attack value
+  private int timeLimit = 60;
+
+  // Lose
+  private bool lost = false;
 
   private void Awake () {
     if (instance == null) {
@@ -48,7 +55,13 @@ public class GameManager: MonoBehaviour {
       bubbleManager = gameObject.GetComponent<BubbleManager>();
     }
 
-    DontDestroyOnLoad(gameObject);
+    if(gameMenu == null) {
+      gameMenu = gameObject.GetComponent<GameMenu>();
+    }
+
+    lost = false;
+
+    // DontDestroyOnLoad(gameObject);
   }
 
   public void IncreaseScore(int s) {
@@ -97,5 +110,19 @@ public class GameManager: MonoBehaviour {
 
   public float SlideMoveSpeedMax {
     get { return slideMoveSpeedMax; }
+  }
+
+  public int TimeLimit {
+    get { return timeLimit; }
+  }
+
+  public bool Lost {
+    get { return lost; }
+  }
+
+  public void Lose() {
+    lost = true;
+    bubbleManager.ClearAllBubbles();
+    gameMenu.Open(scoreManager.Score);
   }
 }

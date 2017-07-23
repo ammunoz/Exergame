@@ -16,6 +16,10 @@ public class ScoreManager : MonoBehaviour {
     if (debug) Debug.Log("ScoreLabel found: " + (scoreLabel != null));
   }
 
+  public int Score {
+    get { return score; }
+  }
+
   public void IncreaseScore(int s) {
     score += s;
     UpdateScore();

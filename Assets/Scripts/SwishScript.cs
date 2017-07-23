@@ -18,6 +18,7 @@ public class SwishScript : BubbleScript {
     base.InitBubble();
     value = GameManager.instance.SwishValue;
     radius = UnityEngine.Random.Range(GameManager.instance.SwishRadiusMin, GameManager.instance.SwishRadiusMax);
+    center = transform.position;
     rotateSpeed = GameManager.instance.SwishRotateSpeed;
   }
 

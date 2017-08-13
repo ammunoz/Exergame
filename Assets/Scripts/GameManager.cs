@@ -27,15 +27,15 @@ public class GameManager : MonoBehaviour
   public const int swishValue = 2;
   public const int swishRadiusMin = 1;
   public const int swishRadiusMax = 5;
-  public const float swishRotateSpeed = 1f;
+  public const float swishRotateSpeed = 0.5f;
 
   // Slide values
   public const int slideValue = 2;
   public const float slideMoveSpeedMin = 0.05f;
-  public const float slideMoveSpeedMax = 0.20f;
+  public const float slideMoveSpeedMax = 0.10f;
 
   // Time Attack value
-  public const int timeLimit = 6;
+  public const int timeLimit = 60;
 
   // Game state
   public bool isPlaying = false;

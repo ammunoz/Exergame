@@ -5,7 +5,7 @@ public class GameMenu : MonoBehaviour
 {
   private int score = 0;
   private bool show = false;
-  private Rect windowRect = new Rect((Screen.width - 300) / 2, (Screen.height - 125) / 2, 300, 125);
+  private Rect windowRect = new Rect((Screen.width - 300) / 2, (Screen.height - 125) / 2, Screen.width / 4, Screen.height / 4);
 
   void OnGUI()
   {
@@ -18,15 +18,18 @@ public class GameMenu : MonoBehaviour
   // This is the actual window.
   void DialogWindow(int windowID)
   {
-    float y = 30;
-    GUI.Label(new Rect(5, y, windowRect.width, 20), "You got: " + score.ToString() + " point(s)");
+    const int numElements = 3;
+    float buttonHeight = windowRect.height * 0.1875f; // magic number to tweak
+    float buttonInterval = windowRect.height / (numElements + 1);
+    
+    GUI.Label(new Rect(5, buttonInterval, windowRect.width, buttonHeight), "You got: " + score.ToString() + " point(s)");
 
-    if(GUI.Button(new Rect(5, y * 2, windowRect.width - 10, 20), "Play Again"))
+    if(GUI.Button(new Rect(5, buttonInterval * 2, windowRect.width - 10, buttonHeight), "Play Again"))
     {
       GameManager.instance.StartNewGame();
     }
 
-    if (GUI.Button(new Rect(5, y * 3, windowRect.width - 10, 20), "Quit"))
+    if (GUI.Button(new Rect(5, buttonInterval * 3, windowRect.width - 10, buttonHeight), "Quit"))
     {
       Application.Quit();
       show = false;

@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BubbleScript : MonoBehaviour {
-
+public class BubbleScript : MonoBehaviour
+{
   public bool debug = false;
   protected bool collided = false;
   protected int value = 0;
 
-  virtual protected void Awake() {
+  virtual protected void Awake()
+  {
     InitBubble();
   }
 
-  virtual protected void GetRandomLocationOnScreen(out float x, out float y) {
+  virtual protected void GetRandomLocationOnScreen(out float x, out float y)
+  {
     x = UnityEngine.Random.Range(GameManager.xMin, GameManager.xMax);
     y = UnityEngine.Random.Range(GameManager.yMin, GameManager.yMax);
     if (debug) Debug.Log("Bubble spawned at x: " + x + ", y: " + y);
   }
 
-  virtual protected void InitBubble() {
+  virtual protected void InitBubble()
+  {
     // Set values
-    value = GameManager.instance.BubbleValue;
+    value = GameManager.bubbleValue;
 
     // Set random location
     float x, y;
@@ -29,25 +32,29 @@ public class BubbleScript : MonoBehaviour {
 
   virtual protected void Move() { }
 
-  protected void Update() {
+  protected void Update()
+  {
     Move();
   }
 
-  protected void OnTriggerEnter(Collider c) {
-    if (debug) 
+  protected void OnTriggerEnter(Collider c)
+  {
+    if (debug)
       Debug.Log(gameObject.name + ": collided with " + c.name);
 
-    if (c.tag == "Hand") {
-      if (!collided) {
-        collided = true;
-        GameManager.instance.IncreaseScore(value);
-        Destroy(this.gameObject);
-      }
+    if (c.tag != "Hand" || collided)
+    {
+      return;
     }
+
+    collided = true;
+    GameManager.instance.IncreaseScore(value);
+    Destroy(this.gameObject);
   }
 
-  protected void OnTriggerExit(Collider c) {
-    if(c.tag == "Hand")
+  protected void OnTriggerExit(Collider c)
+  {
+    if (c.tag == "Hand")
       collided = false;
   }
 }

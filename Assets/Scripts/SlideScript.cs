@@ -34,11 +34,11 @@ public class SlideScript : BubbleScript
     float current_y = transform.position.y;
 
     // If bubble passes horizontal boundaries, switch direction
-    if (current_x + 1 <= GameManager.xMin || current_x - 1 >= GameManager.xMax)
+    if (current_x + 1 <= GameManager.instance.xMin || current_x - 1 >= GameManager.instance.xMax)
       horizontalDirection *= -1;
 
     // If bubble passes vertical boundaries, switch direction
-    if (current_y <= GameManager.yMin || current_y >= GameManager.yMax)
+    if (current_y <= GameManager.instance.yMin || current_y >= GameManager.instance.yMax)
       verticalDirection *= -1;
 
     transform.position = new Vector3(

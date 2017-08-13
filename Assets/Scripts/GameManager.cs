@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
   private GameMenu gameMenu = null;
 
   // Screen values
-  public const float xMin = -8.0f; // previously -8.0f;
-  public const float xMax = 4.75f; // previously 8.0f;
-  public const float yMin = -2.0f; // previously 3.5f;
-  public const float yMax = 4.05f; // previously 5.5f;
+  public float xMin = 0.0f; // previously -8.0f;
+  public float xMax = 0.0f; // previously 8.0f;
+  public float yMin = 0.0f; // previously 3.5f;
+  public float yMax = 0.0f; // previously 5.5f;
 
   // Pop values
   public const int popValue = 1;
@@ -53,6 +53,12 @@ public class GameManager : MonoBehaviour
 
     isPlaying = false;
     gameMenu = gameObject.AddComponent<GameMenu>();
+
+    Vector3 screenInfo = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
+    float playableWidth = screenInfo.x * 0.85f;
+    float playableHeight = screenInfo.y * 0.85f;
+    xMax = System.Math.Min(5.0f, playableWidth); xMin = System.Math.Max(-4.75f, -playableWidth);
+    yMax = playableHeight; yMin = -playableHeight / 2.0f;
   }
 
   public void IncreaseScore(int s)

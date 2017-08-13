@@ -14,8 +14,8 @@ public class BubbleScript : MonoBehaviour
 
   virtual protected void GetRandomLocationOnScreen(out float x, out float y)
   {
-    x = UnityEngine.Random.Range(GameManager.xMin, GameManager.xMax);
-    y = UnityEngine.Random.Range(GameManager.yMin, GameManager.yMax);
+    x = UnityEngine.Random.Range(GameManager.instance.xMin, GameManager.instance.xMax);
+    y = UnityEngine.Random.Range(GameManager.instance.yMin, GameManager.instance.yMax);
     if (debug) Debug.Log("Bubble spawned at x: " + x + ", y: " + y);
   }
 

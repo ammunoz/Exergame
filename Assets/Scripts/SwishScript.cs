@@ -10,8 +10,8 @@ public class SwishScript : BubbleScript
 
   protected override void GetRandomLocationOnScreen(out float x, out float y)
   {
-    x = UnityEngine.Random.Range(GameManager.xMin + radius, GameManager.xMax - radius);
-    y = UnityEngine.Random.Range(GameManager.yMin + radius, GameManager.yMax - radius);
+    x = UnityEngine.Random.Range(GameManager.instance.xMin + radius, GameManager.instance.xMax - radius);
+    y = UnityEngine.Random.Range(GameManager.instance.yMin + radius, GameManager.instance.yMax - radius);
     if (debug) Debug.Log("[Swish] Bubble spawned at x: " + x + ", y: " + y);
   }
 
